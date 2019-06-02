@@ -36,4 +36,4 @@ def run():
         driver = AccessoryDriver(port=51826, persist_file='busy_home.state')
         driver.add_accessory(accessory=get_bridge(driver))
         signal.signal(signal.SIGTERM, driver.signal_handler)
-        driver.start()import logging
+        driver.start()

@@ -1,5 +1,3 @@
-  GNU nano 2.7.4                  File: lightBulb.py                            
-
 import logging
 
 import RPi.GPIO as GPIO

@@ -34,10 +34,10 @@ class LightBulb(Accessory):
     	data = self._uid + value
     	client.publish(self.mqtt_topic, payload=data, retain=False)
 
-	@property
+    @property
     def uid(self):
-        return self._uid
-
+    	return self._uid
     @uid.setter
     def uid(self, identify):
-        self._uid = identify
+    	self._uid = identify
+    

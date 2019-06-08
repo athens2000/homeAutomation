@@ -30,10 +30,9 @@ class LightBulb(Accessory):
     def on_connect(client, userdata, rc):
     	client.subscribe(mqtt_topic)
 
-
-	def set_bulb(self, value):
-        data = self._uid + value
-        client.publish(self.mqtt_topic, payload = data, retain=False)
+    def set_bulb(self, value):
+    	data = self._uid + value
+    	client.publish(self.mqtt_topic, payload=data, retain=False)
 
 	@property
     def uid(self):

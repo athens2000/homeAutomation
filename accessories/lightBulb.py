@@ -18,11 +18,11 @@ class LightBulb(Accessory):
         self._uid = ""
 
         self.mqtt_username = "atharv"
-		self.mqtt_password = "athu1996"
-		self.mqtt_topic = "test"
-		self.mqtt_broker_ip = "192.168.1.6"
+        self.mqtt_password = "athu1996"
+        self.mqtt_topic = "test"
+        self.mqtt_broker_ip = "192.168.1.6"
 
-		client = mqtt.Client()
+ 		client = mqtt.Client()
 		client.username_pw_set(self.mqtt_username, self.mqtt_password)
 
 		client.on_connect = self.on_connect

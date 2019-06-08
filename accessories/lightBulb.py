@@ -22,14 +22,14 @@ class LightBulb(Accessory):
         self.mqtt_topic = "test"
         self.mqtt_broker_ip = "192.168.1.6"
 
- 		client = mqtt.Client()
-		client.username_pw_set(self.mqtt_username, self.mqtt_password)
-
-		client.on_connect = self.on_connect
-		client.connect(self.mqtt_broker_ip, 1883)
+        client = mqtt.Client()
+        client.username_pw_set(self.mqtt_username, self.mqtt_password)
+        client.on_connect = self.on_connect
+        client.connect(self.mqtt_broker_ip, 1883)
 
     def on_connect(client, userdata, rc):
-		client.subscribe(mqtt_topic)
+    	client.subscribe(mqtt_topic)
+
 
 	def set_bulb(self, value):
         data = self._uid + value

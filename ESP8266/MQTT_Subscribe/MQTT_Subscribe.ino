@@ -67,6 +67,7 @@ void loop()
 {
   if (!client.connected()) {
     Connect();
+    delay(1000);
   }
   client.loop();
 }

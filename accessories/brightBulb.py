@@ -1,16 +1,14 @@
 import logging
-
-import RPi.GPIO as GPIO
+import paho.mqtt.client as mqtt
 
 from pyhap.accessory import Accessory
 from pyhap.const import CATEGORY_LIGHTBULB
-
 
 class BrightBulb(Accessory):
 
     category = CATEGORY_LIGHTBULB
 
-    def __init__(self, *args, pin=11, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         serv_light = self.add_preload_service(
@@ -21,34 +19,29 @@ class BrightBulb(Accessory):
 
         self.char_brightness = serv_light.configure_char(
             'Brightness', setter_callback=self.set_brightness)
-
-        self.pin = pin
-        self._gpio_setup(pin)
+            
         self._uid = ""
+    
+        self.mqtt_username = "atharv"
+        self.mqtt_password = "athu1996"
+        self.mqtt_topic = "test"
+        self.mqtt_broker_ip = "192.168.1.6"
+        
+        self.client = mqtt.Client()
+        self.client.username_pw_set(self.mqtt_username, self.mqtt_password)
+        self.client.on_connect = self.on_connect
+        self.client.connect(self.mqtt_broker_ip, 1883)
 
-    @classmethod
-    def _gpio_setup(_cls, pin):
-        if GPIO.getmode() is None:
-            GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(pin, GPIO.OUT)
-
-    def __setstate__(self, state):
-        self.__dict__.update(state)
-        self._gpio_setup(self.pin)
+    def on_connect(client, userdata, flag, rc):
+        client.subscribe(mqtt_topic)
 
     def set_bulb(self, value):
-        if value:
-            GPIO.output(self.pin, GPIO.HIGH)
-        else:
-            GPIO.output(self.pin, GPIO.LOW)
+        data = self._uid + "/" + str(value)
+        self.client.publish(self.mqtt_topic, payload=data, retain=False)
 
     def set_brightness(self, value):
-        logging.debug("Brightness set: %s", value)
-##        print("Brightness: %s", value)
-
-    def stop(self):
-        super().stop()
-        GPIO.cleanup()
+        data = self._uid + "!" + str(value)
+        self.client.publish(self.mqtt_topic, payload=data, retain=False)
 
     @property
     def uid(self):

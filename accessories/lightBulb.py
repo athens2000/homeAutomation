@@ -8,7 +8,7 @@ class LightBulb(Accessory):
 
     category = CATEGORY_LIGHTBULB
 
-    def __init__(self, *args, pin=11, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         serv_light = self.add_preload_service('Lightbulb')
@@ -31,7 +31,7 @@ class LightBulb(Accessory):
     	client.subscribe(mqtt_topic)
 
     def set_bulb(self, value):
-    	data = self._uid + "//" + str(value)
+    	data = self._uid + "/" + str(value)
     	self.client.publish(self.mqtt_topic, payload=data, retain=False)
 
     @property

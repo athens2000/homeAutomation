@@ -14,16 +14,17 @@ const char* clientID = "Bedroom Table";
 WiFiClient wifiClient;
 PubSubClient client(mqtt_server, 1883, wifiClient); // 1883 is the listener port for the Broker
 
-void ReceivedMessage(char* topic, byte* payload, unsigned int length) {
+void ReceivedMessage(char* topic, byte* payload, unsigned int length) 
+{
   String a;
-  for (int i=0; i<length; i++)
-  {
+  for (int i=0; i<length; i++){
     a = a + (char)payload[i];
   }
   Serial.println(a);
 }
 
-bool Connect() {
+bool Connect() 
+{
   if (client.connect(clientID, mqtt_username, mqtt_password)) {
       client.subscribe(mqtt_topic);
       Serial.println("Connected");
@@ -35,7 +36,8 @@ bool Connect() {
   }
 }
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
 
   Serial.print("Connecting to ");
@@ -61,7 +63,8 @@ void setup() {
   }
 }
 
-void loop() {
+void loop() 
+{
   if (!client.connected()) {
     Connect();
   }

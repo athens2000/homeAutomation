@@ -32,8 +32,8 @@ class Switch(Accessory):
         client.subscribe(mqtt_topic)
 
     def set_switch(self, value):
-    data = self._uid + "/" + str(value)
-    self.client.publish(self.mqtt_topic, payload=data, retain=False)
+        data = self._uid + "/" + str(value)
+        self.client.publish(self.mqtt_topic, payload=data, retain=False)
         
     @property
     def uid(self):

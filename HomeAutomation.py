@@ -15,9 +15,9 @@ logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 def get_bridge(driver):
     bridge = Bridge(driver, 'Bridge')
 
-    Light1 = LightBulb(driver, 'Ligh tBulb', pin=10)
-    Bright1 = BrightBulb(driver, 'Table Lamp', pin=12)
-    Outlet1 = Outlet(driver, 'Laptop Charger', pin=13)
+    Light1 = LightBulb(driver, 'Ligh tBulb')
+    Bright1 = BrightBulb(driver, 'Table Lamp')
+    Outlet1 = Outlet(driver, 'Laptop Charger')
     Fan1 = Fan(driver, 'Room Fan')
 
 

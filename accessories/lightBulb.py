@@ -31,7 +31,7 @@ class LightBulb(Accessory):
     	client.subscribe(mqtt_topic)
 
     def set_bulb(self, value):
-    	data = self._uid + str(value)
+        data = self._uid + str(value)
     	self.client.publish(self.mqtt_topic, payload=data, retain=False)
 
     @property

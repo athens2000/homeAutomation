@@ -15,21 +15,17 @@ logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 def get_bridge(driver):
     bridge = Bridge(driver, 'Bridge')
 
-    Light1 = LightBulb(driver, 'Ligh tBulb')
     Bright1 = BrightBulb(driver, 'Table Lamp')
-    Outlet1 = Outlet(driver, 'Laptop Charger')
-    Fan1 = Fan(driver, 'Room Fan')
+    Outlet1 = Outlet(driver, 'Table Switch')
+    Switch1 = Switch(driver, 'Laptop Charger') 
 
+    Bright1.uid = "BedroomTable Lamp"
+    Outlet1.uid = "BedroomTbale LaptopCharger"
+    Switch1.uid = "BedroomTable Switch"
 
-    Light1.uid = "Bedroom Light"
-    Bright1.uid = "Bedroom Table Lamp"
-    Outlet1.uid = "Bedroom Laptop Charger"
-    Fan1.uid = "Bedroom Fan"
-
-    bridge.add_accessory(Light1)
     bridge.add_accessory(Bright1)
     bridge.add_accessory(Outlet1)
-    bridge.add_accessory(Fan1)
+    bridge.add_accessory(Switch1)
     return (bridge)
 
 

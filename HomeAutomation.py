@@ -20,7 +20,7 @@ def get_bridge(driver):
     Switch1 = Switch(driver, 'Laptop Charger') 
 
     Bright1.uid = "BedroomTable Lamp"
-    Outlet1.uid = "BedroomTbale LaptopCharger"
+    Outlet1.uid = "BedroomTable LaptopCharger"
     Switch1.uid = "BedroomTable Switch"
 
     bridge.add_accessory(Bright1)
